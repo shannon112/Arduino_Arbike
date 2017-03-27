@@ -1,5 +1,5 @@
-//Arbike v0.0
-//just a frame, can’t work now
+//Arbike v1.0
+//A basic demo used leds to simulation
 #include <Wire.h>  // Arduino IDE 內建
 #include <LiquidCrystal_I2C.h>
 
@@ -17,9 +17,11 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define LEDPower 4 //接給LED Matrix Vcc
 //#define LCDPower 5 //接給LCD Vcc  >>直接接給5V
 #define BACKPower 6 //接給後燈 Vcc
-#define PIRread 7 //接PIR OUTPUT
-#define rightLEDPower 15 //接右方向燈的Vcc(前＋後）
-#define leftLEDPower 16 //接右方向燈的Vcc(前＋後）
+//#define PIRread 7 //接PIR OUTPUT
+#define TRIGPIN 5 
+#define ECHOPIN 7
+#define rightLEDPower 8 //接右方向燈的Vcc(前＋後）
+#define leftLEDPower 9 //接右方向燈的Vcc(前＋後）
 #define Autobot 10 //接Pin10，接有段式開關，然後接地
 #define LEDbot 13 //開關LED表情電源 接Pin13，接有段式開關，然後接地
 #define BACKbot 12 //開關BACK電源  接Pin12，接有段式開關，然後接地
@@ -31,8 +33,8 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Variable//////////////////////
 ///////////////////////////////////////////
-volatile boolean leftPowerState = false;
-volatile boolean rightPowerState = false;
+volatile boolean leftPowerState = true;//一開始就會變化一次
+volatile boolean rightPowerState = true;//一開始就會變化一次
 
 byte AutoState = 0; //是否開啟自動
 byte LEDPowerState = 0; //表情
@@ -76,12 +78,14 @@ void setup() {
   pinMode(Autobot, INPUT_PULLUP);
 
 
-  ////////// 讀取資料系列
-  pinMode(PIRread, INPUT);
+  ////////// 超音波測距
+  // pinMode(PIRread, INPUT);
+  pinMode(TRIGPIN, OUTPUT);
+  pinMode(ECHOPIN, INPUT);
 
-  //  InitialBlink();  //LCD開機時閃三下
-  //  InitialOpen();  // 輸出開機畫面
-  //  InitialReady(); // 輸出初始運行畫面
+  InitialBlink();  //LCD開機時閃三下
+  InitialOpen();  // 輸出開機畫面
+  InitialReady(); // 輸出初始運行畫面
 }
 
 ///////////////////////////////////////////////////////////////
@@ -144,14 +148,26 @@ void CheckLight() {     //OK
   }
 }
 
-void CheckPeople() {     //OK
+/*用被動式紅外線感測
+  void CheckPeople() {     //OK
   int Peopleval = digitalRead(PIRread);
   if (Peopleval == HIGH) {
     PeopleState = 1;
   } else {
     PeopleState = 0;
   }
+  }
+*/
+void CheckPeople() {     //OK
+  long cm = ping();
+  Serial.println(cm);
+  if (cm <= 10) {
+    PeopleState = 1;
+  } else {
+    PeopleState = 0;
+  }
 }
+
 
 void CheckReed() {
 }
@@ -186,6 +202,14 @@ void InitialBlink() {  //OK
   lcd.backlight();
 }
 
+long ping() {
+  digitalWrite(TRIGPIN, LOW);
+  delayMicroseconds(2);
+  digitalWrite(TRIGPIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIGPIN, LOW);
+  return pulseIn(ECHOPIN, HIGH) / 58;
+}
 ///////////////////////////////////////////////////////////////
 ////////////////////////////action//////////////////////
 ///////////////////////////////////////////
@@ -230,17 +254,17 @@ void SetTurning() {           //OK
   if ((leftPowerState == 1) && (rightPowerState == 0)) {
     digitalWrite(rightLEDPower, LOW);
     digitalWrite(leftLEDPower, HIGH);
-    delay(500);
+    delay(250);
     digitalWrite(leftLEDPower, LOW);
-    delay(500);
+    delay(250);
     digitalWrite(leftLEDPower, HIGH);
   }
   if ((leftPowerState == 0) && (rightPowerState == 1)) {
     digitalWrite(leftLEDPower, LOW);
     digitalWrite(rightLEDPower, HIGH);
-    delay(500);
+    delay(250);
     digitalWrite(rightLEDPower, LOW);
-    delay(500);
+    delay(250);
     digitalWrite(rightLEDPower, HIGH);
 
   }
@@ -251,10 +275,10 @@ void SetTurning() {           //OK
   } if ((leftPowerState == 1) && (rightPowerState == 1)) {
     digitalWrite(leftLEDPower, HIGH);
     digitalWrite(rightLEDPower, HIGH);
-    delay(500);
+    delay(250);
     digitalWrite(rightLEDPower, LOW);
     digitalWrite(leftLEDPower, LOW);
-    delay(500);
+    delay(250);
     digitalWrite(rightLEDPower, HIGH);
     digitalWrite(leftLEDPower, HIGH);
   }
@@ -272,9 +296,9 @@ void printDistance() {
 
 
 void ChangeleftbotState() {
-  leftPowerState =! leftPowerState;
+  leftPowerState = ! leftPowerState;
 }
 
 void ChangerightbotState() {
-  rightPowerState =! rightPowerState;
+  rightPowerState = ! rightPowerState;
 }

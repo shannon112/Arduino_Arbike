@@ -1,3 +1,6 @@
+//Arbike v2.0
+//It completely has all basic feature, but a little problem about blink eyes.
+
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include "Timer.h"            //https://github.com/JChristensen/Timer

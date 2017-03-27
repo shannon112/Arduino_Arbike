@@ -1,5 +1,5 @@
 //Arbike v2.0
-//It completely has all basic feature, but a little problem about blink eyes.
+//It completely has all basic feature, and also fixed the problem about blink eyes.
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -45,8 +45,8 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 
 #define HT_DATA 16 //LED Matrix系列
 #define HT_WR   17 //LED Matrix系列
-#define HT_CS   18 //LED Matrix系列 //RD
-#define HT_CS2  19 //LED Matrix系列 //CS
+#define HT_CS   4 //LED Matrix系列 //RD
+#define HT_CS2  1 //LED Matrix系列 //CS
 
 //analog
 #define Lightread 0 //高數值為亮 5V接光敏，光敏接A0/接10K電阻再接地 
@@ -132,6 +132,7 @@ const  uint16_t sfast[] PROGMEM = {
   B00000000, B00000000, B00000000,
   B00000000, B00000000, B00000000,
 };
+long blinkornot = 0;
 
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Variable//////////////////////
@@ -179,6 +180,7 @@ void setup() {
   readbitmap(normal);
   matrix.writeScreen();
   delay(2000);
+
   readbitmap(slow);
   lcd.begin(16, 2);  // 初始化 LCD，一行 16 的字元，共 2 行，預設開啟背光
 
@@ -215,6 +217,7 @@ void setup() {
   InitialBlink();  //LCD開機時閃三下
   InitialOpen();  // 輸出開機畫面
   InitialReady(); // 輸出初始運行畫面
+
 }
 
 ///////////////////////////////////////////////////////////////
@@ -231,10 +234,10 @@ void loop() {
   checkReed();
   printSpeed();
   printDistance();
-  BlinkEyes();
   //  Serial.println(leftPowerState);
   //  Serial.println(rightPowerState);
   Serial.println("");
+
 }
 
 ///////////////////////////////////////////////////////////////
@@ -387,6 +390,7 @@ void SetLCDLED() {                  //OK
       } else {
         digitalWrite(BACKPower, HIGH);
         SetFace();
+        BlinkEyes();
         lcd.backlight();  // 開啟背光
       }
     } else {
@@ -397,6 +401,7 @@ void SetLCDLED() {                  //OK
   } else {
     if (LEDPowerState == 1) {
       SetFace();
+      BlinkEyes();
     } else {
       matrix.clearScreen();
     }
@@ -514,25 +519,31 @@ void BlinkEyes() {
   if (FaceType == 0) {
     Serial.println("Blink0");
   } else if (FaceType == 1) {
-    for (int i = 0 ; i < 2; i++) {
-      readbitmap(slow);
-      matrix.writeScreen();
-      delay(100);
-      readbitmap(normal);
-      matrix.writeScreen();
-      delay(100);
-      Serial.println("Blink1");
+    blinkornot++;
+    if ((blinkornot % 100) == 0) {
+      for (int i = 0 ; i < 2; i++) {
+        readbitmap(slow);
+        matrix.writeScreen();
+        delay(100);
+        readbitmap(normal);
+        matrix.writeScreen();
+        delay(100);
+      }
     }
+    Serial.println("Blink1");
   } else {
-    for (int i = 0 ; i < 2; i++) {
-      readbitmap(sfast);
-      matrix.writeScreen();
-      delay(100);
-      readbitmap(fast);
-      matrix.writeScreen();
-      delay(100);
-      Serial.println("Blink2");
+    blinkornot++;
+    if ((blinkornot % 100) == 0) {
+      for (int i = 0 ; i < 2; i++) {
+        readbitmap(sfast);
+        matrix.writeScreen();
+        delay(100);
+        readbitmap(fast);
+        matrix.writeScreen();
+        delay(100);
+      }
     }
+    Serial.println("Blink2");
   }
 }
 

@@ -2,7 +2,7 @@
 Arbike v2.1.  
 It completely has all basic feature, and also fixed the problem about blink eyes.  
   
-This code is based on Arduino, is about an intelligent bicycle's lighting system.  
+This code is based on Arduino, is about an intelligent bicycle's lighting system.  
 Develop board: Arduino Uno.  
   
 Main Feature :   

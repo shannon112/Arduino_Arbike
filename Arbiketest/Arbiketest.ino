@@ -10,7 +10,7 @@
 
 
 ///////////////////////////////////////////////////////////////
-////////// Set speeder/////////////////
+////////// Set speeder///////////////// 
 ///////////////////////////////////////////
 //set metric = false to use miles true to use kilometer
 boolean metric = true;
@@ -31,20 +31,19 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 //SCL是最上面的
 #define leftbot 2 //接Pin2，接無段式開關，然後接地
 #define rightbot 3 //接Pin3，接無段式開關，然後接地
-//#define LEDPower 4 //接給LED Matrix Vcc
-#define BACKPower 6 //接給前燈 Vcc
+#define FRONTPower 6 //接給前燈 Vcc
 #define TRIGPIN 5
 #define ECHOPIN 7
 #define rightLEDPower 8 //接右方向燈的Vcc(前＋後）
 #define leftLEDPower 9 //接右方向燈的Vcc(前＋後）
 #define Autobot 10 //接Pin10，接有段式開關，然後接地
 #define LEDbot 13 //開關LED表情電源 接Pin13，接有段式開關，然後接地
-#define BACKbot 12 //開關BACK電源  接Pin12，接有段式開關，然後接地
+#define BACKbot 12 //開關FRONT電源  接Pin12，接有段式開關，然後接地
 #define LCDbot 11 //開關LCD電源  接Pin11，接有段式開關，然後接地 
 #define reedPin 15 //磁簧開關 一端插5V 一端插一欄  一欄分叉到D15&10K電阻接地
-
-#define HT_DATA 16 //LED Matrix系列
-#define HT_WR   17 //LED Matrix系列
+//#define 14 //I2C腳位不可用
+#define HT_DATA 16 //LED Matrix系列 /I2C腳位SDA
+#define HT_WR   17 //LED Matrix系列 /I2C腳位SLA
 #define HT_CS   4 //LED Matrix系列 //RD
 #define HT_CS2  1 //LED Matrix系列 //CS
 
@@ -143,7 +142,7 @@ volatile boolean rightPowerState = true;//一開始就會變化一次
 byte AutoState = 0; //是否開啟自動
 byte LEDPowerState = 0; //表情
 byte LCDPowerState = 1; //LCD
-byte BACKPowerState = 0; //後燈
+byte FRONTPowerState = 0; //前燈
 byte LightState = 0; //天亮or暗
 byte PeopleState = 0; //人在or不在
 byte FaceType = 1; //現在是哪種臉 0 1 2  slow normal fast
@@ -192,8 +191,8 @@ void setup() {
   attachInterrupt(1, ChangerightbotState, FALLING);
 
   ////////// 供給電源系列
-  pinMode(BACKPower, OUTPUT);
-  digitalWrite(BACKPower, LOW);
+  pinMode(FRONTPower, OUTPUT);
+  digitalWrite(FRONTPower, LOW);
   pinMode(rightLEDPower, OUTPUT);
   digitalWrite(rightLEDPower, LOW);
   pinMode(leftLEDPower, OUTPUT);
@@ -265,9 +264,9 @@ void CheckTurnOn() {    //OK
     LCDPowerState = 0;
   }
   if (digitalRead(BACKbot) == LOW) {
-    BACKPowerState = 1;
+    FRONTPowerState = 1;
   } else {
-    BACKPowerState = 0;
+    FRONTPowerState = 0;
   }
 }
 
@@ -384,17 +383,17 @@ void SetLCDLED() {                  //OK
   if (AutoState == 1) {
     if (PeopleState == 1) {
       if (LightState == 1) {
-        digitalWrite(BACKPower, LOW);
+        digitalWrite(FRONTPower, LOW);
         matrix.clearScreen();
         lcd.backlight();  // 開啟背光
       } else {
-        digitalWrite(BACKPower, HIGH);
+        digitalWrite(FRONTPower, HIGH);
         SetFace();
         BlinkEyes();
         lcd.backlight();  // 開啟背光
       }
     } else {
-      digitalWrite(BACKPower, LOW);
+      digitalWrite(FRONTPower, LOW);
       matrix.clearScreen();
       lcd.noBacklight();  // 關閉背光
     }
@@ -410,10 +409,10 @@ void SetLCDLED() {                  //OK
     } else {
       lcd.noBacklight();  // 關閉背光
     }
-    if (BACKPowerState == 1) {
-      digitalWrite(BACKPower, HIGH);
+    if (FRONTPowerState == 1) {
+      digitalWrite(FRONTPower, HIGH);
     } else {
-      digitalWrite(BACKPower, LOW);
+      digitalWrite(FRONTPower, LOW);
     }
   }
 }

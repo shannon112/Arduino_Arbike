@@ -1,6 +1,6 @@
 //Arbike v2.0
 //It completely has all basic feature, and also fixed the problem about blink eyes.
-
+ 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include "Timer.h"            //https://github.com/JChristensen/Timer
@@ -10,7 +10,7 @@
 
 
 ///////////////////////////////////////////////////////////////
-////////// Set speeder/////////////////
+////////// Set speeder///////////////// 
 ///////////////////////////////////////////
 //set metric = false to use miles true to use kilometer
 boolean metric = true;

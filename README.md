@@ -1,6 +1,10 @@
 # Arduino_Arbike
-Arbike v2.1.  
-It completely has all basic feature, and also fixed the problem about blink eyes.  
+Arbike v4.0  
+I did lots of changing to this project, it is completely different to the old v2.2.  
+So I skip v3.0, directly name it as v4.0 to show it distinct.  
+However, it is NOT completely done.  
+Still have faccgraph, motormode, random, DHT11 parts waiting to update.  
+The next version will come soon.  
   
 This code is based on Arduino, is about an intelligent bicycle's lighting system.  
 Develop board: Arduino Uno.  

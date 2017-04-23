@@ -41,7 +41,6 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define BACKbot 12 //開關FRONT電源  接Pin12，接有段式開關，然後接地
 #define LCDbot 11 //開關LCD電源  接Pin11，接有段式開關，然後接地 
 #define reedPin 15 //磁簧開關 一端插5V 一端插一欄  一欄分叉到D15&10K電阻接地
-//#define 14 //I2C腳位不可用
 #define HT_DATA 16 //LED Matrix系列 /I2C腳位SDA
 #define HT_WR   17 //LED Matrix系列 /I2C腳位SLA
 #define HT_CS   4 //LED Matrix系列 //RD

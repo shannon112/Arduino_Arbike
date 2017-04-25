@@ -5,17 +5,17 @@ So I skip v3.0, directly name it as v4.0 to show it distinct.
 However, it is NOT completely done.  
 Still have faccgraph, motormode, random, DHT11 parts waiting to update.  
 The next version will come soon.  
-  
+    
 This code is based on Arduino, is about an intelligent bicycle's lighting system.  
-Develop board: Arduino Uno.  
+Based on Arduino Uno.  
   
 Main Feature :   
 ＊ Speed meter — Current speed / Trip distance  
-＊ Front — direction indicators / headlights  
-＊ Back — direction indicators / emotional tail lights (var with speed)  
-＊ Automation on/off — brightness / biker sensor  
-＊ Switching button — switch system to auto or manual  
-＊ Source code is on github ! — the features are continuously update and open to change by anyone.    
-
-Simple demo ppt :   
+＊ Front — Strong LED headlights  
+＊ Back — Emotional "Useless Box" combine with tail lights (base on LED 16x24 matix)  
+＊ Automation on/off — detcect brightness / people  
+＊ Switching modes — switch system to auto or manual1 or manual2  
+＊ Source code is on github ! — the features are continuously update and open to change by anyone.  
+  
+Simple demo ppt :  
 http://www.slideshare.net/secret/cXJbitPTAJqqQu  

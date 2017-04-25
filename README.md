@@ -17,5 +17,5 @@ Main Feature :
 ＊ Switching modes — switch system to auto or manual1 or manual2  
 ＊ Source code is on github ! — the features are continuously update and open to change by anyone.  
   
-Simple demo ppt :  
+Olde version v2.2 simple demo ppt :  
 http://www.slideshare.net/secret/cXJbitPTAJqqQu  

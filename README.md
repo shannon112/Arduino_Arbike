@@ -17,7 +17,7 @@ The next version will come soon.
 * Switching modes — switch system to auto or manual1 or manual2  
 * Source code is on github ! — the features are continuously update and open to change by anyone.  
   
-## Olde version v2.2 simple demo ppt :  
+### Olde version v2.2 simple demo ppt :  
 http://www.slideshare.net/secret/cXJbitPTAJqqQu  
 
 <img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image.png" width="500">

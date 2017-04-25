@@ -1,17 +1,20 @@
 # Arduino_Arbike
-Arbike v2.1.  
-It completely has all basic feature, and also fixed the problem about blink eyes.  
+### This version will not be updated anymore !  
+* There is a new version v4.0, check new-master branch or tag v4.0  
+### Arbike v2.1  
+* It completely has all basic feature, and also fixed the problem about blink eyes.  
   
-This code is based on Arduino, is about an intelligent bicycle's lighting system.  
-Develop board: Arduino Uno.  
+* This code is based on Arduino, is about an intelligent bicycle's lighting system.  
+* Develop board: Arduino Uno.  
   
-Main Feature :   
-＊ Speed meter — Current speed / Trip distance  
-＊ Front — direction indicators / headlights  
-＊ Back — direction indicators / emotional tail lights (var with speed)  
-＊ Automation on/off — brightness / biker sensor  
-＊ Switching button — switch system to auto or manual  
-＊ Source code is on github ! — the features are continuously update and open to change by anyone.    
+### Main Feature :   
+* Speed meter — Current speed / Trip distance  
+* Front — direction indicators / headlights  
+* Back — direction indicators / emotional tail lights (var with speed)  
+* Automation on/off — brightness / biker sensor  
+* Switching button — switch system to auto or manual  
+* Source code is on github ! — the features are continuously update and open to change by anyone.    
 
-Simple demo ppt :   
+### Simple demo ppt :   
 http://www.slideshare.net/secret/cXJbitPTAJqqQu  
+

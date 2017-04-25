@@ -95,6 +95,7 @@ void motorAction(byte box , byte hand) {
     case 2:
     case 3:
     case 4:
+      ;
   }
   switch (hand) {
     case 0:
@@ -102,6 +103,7 @@ void motorAction(byte box , byte hand) {
     case 2:
     case 3:
     case 4:
+      ;
   }
   switch (box) {
     case 0:
@@ -109,5 +111,6 @@ void motorAction(byte box , byte hand) {
     case 2:
     case 3:
     case 4:
+      ;
   }
 }

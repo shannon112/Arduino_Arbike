@@ -157,7 +157,7 @@ void CheckAuto() { //OFF=全關，ONcounter＝0自動/1只亮儀表板/2全亮
   }
 }
 
-void CheckLight() {     //OK
+void CheckLight() {
   int Lightval = analogRead(Lightread);
   if (Lightval < 512) {
     LightState = 0;
@@ -166,7 +166,7 @@ void CheckLight() {     //OK
   }
 }
 
-void CheckPeople() {     //OK
+void CheckPeople() {
   long cm = ping();
   //  Serial.println(cm);
   if (cm <= 10) {
@@ -175,7 +175,6 @@ void CheckPeople() {     //OK
     PeopleState = 0;
   }
 }
-
 
 void readbitmap(const uint16_t input[]) {        //讀取bitmap的圖形
   int iii;
@@ -196,7 +195,6 @@ void readbitmap(const uint16_t input[]) {        //讀取bitmap的圖形
     }
   }
 }
-
 
 void CheckSpeed() {
   int r = digitalRead(reedPin);
@@ -219,11 +217,17 @@ void CheckPlay() {
     MainState = 0;
 }
 
+void CheckTurningState() {
+  String tempTurningState = "";
+  tempTurningState = String(leftPowerState) + String(rightPowerState);
+  TurningState = tempTurningState.toInt();
+}
+
+
 ///////////////////////////////////////////////////////////////
 ////////////////////////////action//////////////////////
 ///////////////////////////////////////////
 //OFF=全關，ONcounter＝0自動/1只亮儀表板/2全亮
-
 void SetPower() {                  //OK
   switch (AutoState) {
     case -1 : //全關
@@ -261,12 +265,6 @@ void SetPower() {                  //OK
     default:
       Serial.println("WTF");
   }
-}
-
-void CheckTurningState() {
-  String tempTurningState = "";
-  tempTurningState = String(leftPowerState) + String(rightPowerState);
-  TurningState = tempTurningState.toInt();
 }
 
 void printSpeed() {
@@ -309,10 +307,10 @@ void ChangerightbotState() {
   rightPowerState = ! rightPowerState;
 }
 
+
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Initial//////////////////////
 ///////////////////////////////////////////
-
 void InitialReady() {  //OK
   lcd.clear();
   lcd.setCursor(0, 0);

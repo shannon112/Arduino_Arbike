@@ -99,7 +99,7 @@ void randomface(int a) {
   switch (a) {
     case 11:
     case 12:
-  }
+  ;}
 }
 
 void brokenface() {

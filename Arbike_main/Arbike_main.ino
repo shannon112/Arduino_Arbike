@@ -1,6 +1,4 @@
-//Arbike v2.0
-//It completely has all basic feature, and also fixed the problem about blink eyes.
-//目標：去掉ＬＥＤ方向燈，加入useless machine、溫濕感測
+//Arbike v4.0
 
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -13,16 +11,15 @@
 ///////////////////////////////////////////////////////////////
 ////////// Set speeder/////////////////
 ///////////////////////////////////////////
-//set metric = false to use miles true to use kilometer
 boolean metric = true;
-//wheel circumference in centimeters
-float wheelC = 26 * 2.54 * 3.14;
+float wheelC = 26 * 2.54 * 3.14;//wheel circumference in centimeers
 
 
 ////////// Set the pins on the I2C chip used for LCD connections:
 //                    addr, en,rw,rs,d4,d5,d6,d7,bl,blpol
 ///////////////////////////////////////////
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+
 
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Arduino Pin//////////////////////
@@ -43,9 +40,9 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define HT_WR   17 //LED Matrix系列 /I2C腳位SLA
 #define HT_CS   4 //LED Matrix系列 //RD
 #define HT_CS2  11 //LED Matrix系列 //CS
-
 //analog
 #define Lightread 0 //高數值為亮 5V接光敏，光敏接A0/接10K電阻再接地 
+
 
 ///////////////////////////////////////////////////////////////
 ////////////////////////////picture＆LED matrix setting//////////////////////
@@ -54,38 +51,41 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 Adafruit_HT1632LEDMatrix matrix = Adafruit_HT1632LEDMatrix(HT_DATA, HT_WR, HT_CS);
 long blinkornot = 0;
 
+
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Variable//////////////////////
 ///////////////////////////////////////////
+//********left/rightbot***********************
 volatile boolean leftPowerState = true;//一開始就會變化一次
 volatile boolean rightPowerState = true;//一開始就會變化一次
-
+int TurningState = 00;
+//********AutoBot***********************************
 byte AutoState = 0; //是否開啟自動
 int AutoStatecounter = 0; //數開關被開了幾次
+//********MainBot***********************************
 int MainState = 0; //是否開啟開關
 int MainStatecounter = 0; //數開關被開了幾次
+//********SensorState***********************************
 byte LightState = 0; //天亮or暗
 byte PeopleState = 0; //人在or不在
 byte FaceType = 1; //現在是哪種臉 0 1 2  slow normal fast
-int TurningState = 00;
+//********SpeedDetect***********************************
 boolean ifSpeeding = 0;
-
-/////Reed Switch//////////////
+float oldKPH = 0;
+float newKPH = 0;
+float KPH = 0;
 int circleNum = 0;
 float odometer = 0;
 float kilometers = 0;
 float speedometer = 0;
-float KPH = 0;
-float oldKPH = 0;
-float newKPH = 0;
 int reedTime = 0;
 int reedTimeDelta = 0;
 boolean reedOn = false;
 
+
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Setup//////////////////////
 ///////////////////////////////////////////
-
 void setup() {
   /////////// serial port初始化
   Serial.begin(9600);
@@ -125,26 +125,25 @@ void setup() {
   pinMode(reedPin, INPUT);
 }
 
+
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Main function//////////////////////
 ///////////////////////////////////////////
-
 void loop() {
+  Serial.println("===================");
   CheckAuto();
   CheckLight();
   CheckPeople();
   CheckPlay();
-  CheckTurningState(); //打開方向燈  用中斷Check是否turning用中斷Check是否turning
-  CheckReed();
+  CheckTurningState();
+  CheckSpeed();
   printSpeed();
   printDistance();
   SetPower(); //打開儀表板 後燈 前燈(表情)
   BlinkEyes();
-  //  Serial.println(leftPowerState);
-  //  Serial.println(rightPowerState);
-  Serial.println("");
-
+  Serial.println("===================");
 }
+
 
 ///////////////////////////////////////////////////////////////
 ////////////////////////////check//////////////////////
@@ -199,7 +198,7 @@ void readbitmap(const uint16_t input[]) {        //讀取bitmap的圖形
 }
 
 
-void CheckReed() {
+void CheckSpeed() {
   int r = digitalRead(reedPin);
   if (r == 1 && reedOn == false) {
     reedOn = true;

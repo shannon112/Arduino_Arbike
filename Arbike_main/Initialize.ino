@@ -1,14 +1,15 @@
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Initial//////////////////////
 ///////////////////////////////////////////
-void InitialReady() {  //OK
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Speed: 00 km/s");
-  lcd.setCursor(0, 1);
-  lcd.print("Ready to Go! ");
-  delay(3000);
-  lcd.clear();
+
+void InitialBlink() {  //OK
+  for (int i = 0; i < 3; i++) {
+    lcd.backlight();  // 開啟背光
+    delay(250);
+    lcd.noBacklight();// 關閉背光
+    delay(250);
+  }
+  lcd.backlight();
 }
 
 void InitialOpen() {  //OK
@@ -20,12 +21,13 @@ void InitialOpen() {  //OK
   delay(5000);
 }
 
-void InitialBlink() {  //OK
-  for (int i = 0; i < 3; i++) {
-    lcd.backlight();  // 開啟背光
-    delay(250);
-    lcd.noBacklight();// 關閉背光
-    delay(250);
-  }
-  lcd.backlight();
+void InitialReady() {  //OK
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print("Speed: 00.00km/s");
+  lcd.setCursor(0, 1);
+  lcd.print("Ready to Go! ");
+  delay(1000);
+  lcd.clear();
 }
+

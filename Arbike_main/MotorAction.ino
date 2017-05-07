@@ -48,3 +48,7 @@ void motorAction(byte mode) {
       break;
   }
 }
+void getrandomNumber() {
+  randomNumber = random(1, 5);
+  // get a random number from 1 to 4
+}

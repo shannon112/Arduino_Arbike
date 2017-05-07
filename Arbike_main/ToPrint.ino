@@ -12,14 +12,14 @@ void toPrint() {
 void printSpeed() {
   speedometer = wheelC / reedTimeDelta;
   if (metric) {
-    //Speed: 13.25 m/s
+    //Speed: 13.25km/s
     KPH = speedometer * 36;
     lcd.setCursor(0, 0);
     lcd.print("Speed: ");
     lcd.setCursor(8, 0);
     lcd.print(KPH, 2);
-    lcd.setCursor(14, 0);
-    lcd.print("m/s");
+    lcd.setCursor(13, 0);
+    lcd.print("km/s");
     //Serial.println("KPH:");
     //Serial.println(KPH);
   }

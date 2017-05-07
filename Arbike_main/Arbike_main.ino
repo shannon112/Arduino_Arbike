@@ -1,5 +1,4 @@
 //Arbike v4.0
-//random還沒寫
 #include <Servo.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -22,25 +21,29 @@ float wheelC = 26 * 2.54 * 3.14;//wheel circumference in centimeers
 //                    addr, en,rw,rs,d4,d5,d6,d7,bl,blpol
 ///////////////////////////////////////////
 LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
+//黃色SDL
 
 
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Arduino Pin//////////////////////
 ///////////////////////////////////////////現在只剩：前大燈，儀表板燈，後表情燈
 //digital
+//far away
 #define leftbot 2 //接Pin2，接無段式開關，然後接地
 #define rightbot 3 //接Pin3，接無段式開關，然後接地
 #define FRONTPower 6 //接給前燈 Vcc
+#define Autobot 10 //接Pin10，接有段式開關，然後接地 //OFF=全關，ONcounter＝0自動/1只亮儀表板/2全亮
+#define reedPin 15 //磁簧開關 一端插5V 一端插一欄  一欄分叉到D15&10K電阻接地
+//mid
 #define TRIGPIN 5  //超音波測距器
 #define ECHOPIN 7  //超音波測距器
-#define Autobot 10 //接Pin10，接有段式開關，然後接地 //OFF=全關，ONcounter＝0自動/1只亮儀表板/2全亮
+//close
 #define Mainbot 13 //開關LED表情電源 接Pin13，接有段式開關，然後接地  //加入counter，開關切換車宣and互動表情
 #define servoPinb 12 //接servo 開蓋子
 #define servoPinh 9 //接servo 關開關
 #define DHTPIN 8 //接DHT11 data pinn
-#define reedPin 15 //磁簧開關 一端插5V 一端插一欄  一欄分叉到D15&10K電阻接地
-#define HT_DATA 16 //LED Matrix系列 /I2C腳位SDA
-#define HT_WR   17 //LED Matrix系列 /I2C腳位SLA
+#define HT_DATA 16 //LED Matrix系列 /I2C腳位SDA A2
+#define HT_WR   17 //LED Matrix系列 /I2C腳位SLA A3
 #define HT_CS   4 //LED Matrix系列 //CS
 #define HT_CS2  11 //LED Matrix系列 //RD
 //analog
@@ -49,7 +52,7 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define DHTTYPE DHT21   // DHT 21 (AM2301)
 DHT dht(DHTPIN, DHTTYPE);
 
-
+//gnd echo trig vcc白
 ///////////////////////////////////////////////////////////////
 ////////////////////////////picture＆LED matrix setting//////////////////////
 ///////////////////////////////////////////
@@ -71,7 +74,7 @@ int AutoStatecounter = 0; //數開關被開了幾次
 //********MainBot***********************************
 int MainState = 0; //是否開啟開關
 int MainStatecounter = 0; //數開關被開了幾次
-int randomNumber = 0; //隨機模式按掉開關
+long randomNumber = 0; //隨機模式按掉開關
 //********SensorState***********************************
 byte LightState = 0; //天亮or暗
 byte PeopleState = 0; //人在or不在
@@ -106,8 +109,8 @@ void setup() {
   matrix.begin(ADA_HT1632_COMMON_16NMOS);
   matrix.fillScreen();
   delay(500);
-  fastface();
-  delay(2000);
+  normalface();
+  delay(1000);
   //**************LCD儀表板初始化**************
   lcd.begin(16, 2);  // 初始化 LCD，一行 16 的字元，共 2 行，預設開啟背光
   InitialBlink();  //LCD開機時閃三下
@@ -134,7 +137,7 @@ void setup() {
   servoh.attach(servoPinh);
   //**************DHT11**************
   dht.begin();
-
+  randomSeed(analogRead(7));
 }
 
 

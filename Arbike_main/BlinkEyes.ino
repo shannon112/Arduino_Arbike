@@ -2,7 +2,7 @@ void BlinkEyes() {
   switch (FaceType) {
     case 1:
       blinkornot++;
-      if ((blinkornot % 100) == 0) {
+      if ((blinkornot % 80) == 0) {
         for (int i = 0 ; i < 2; i++) {
           slowface();
           delay(100);
@@ -13,7 +13,7 @@ void BlinkEyes() {
       break;
     case 2:
       blinkornot++;
-      if ((blinkornot % 100) == 0) {
+      if ((blinkornot % 80) == 0) {
         for (int i = 0 ; i < 2; i++) {
           fastBlinkface();
           delay(100);
@@ -24,7 +24,7 @@ void BlinkEyes() {
       break;
     case 20:
       blinkornot++;
-      if ((blinkornot % 100) == 0) {
+      if ((blinkornot % 80) == 0) {
         for (int i = 0 ; i < 2; i++) {
           SPslowBlinkface();
           delay(100);
@@ -35,7 +35,7 @@ void BlinkEyes() {
       break;
     case 21:
       blinkornot++;
-      if ((blinkornot % 100) == 0) {
+      if ((blinkornot % 80) == 0) {
         for (int i = 0 ; i < 2; i++) {
           SPnormalBlinkface();
           delay(100);
@@ -46,7 +46,7 @@ void BlinkEyes() {
       break;
     case 22:
       blinkornot++;
-      if ((blinkornot % 100) == 0) {
+      if ((blinkornot % 80) == 0) {
         for (int i = 0 ; i < 2; i++) {
           SPfastBlinkface();
           delay(100);

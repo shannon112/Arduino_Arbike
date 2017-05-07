@@ -41,13 +41,33 @@ void loop() {
 
   } else {
     Serial.println("on");
-    servob.write(180); 
-    delay(1500);
-    servoh.write(125); 
-    delay(500);
-    servoh.write(65); 
-    delay(1000);
-    servob.write(90); 
+      servob.write(120);
+      delay(300);
+      servob.write(90);
+      delay(300);
+      servob.write(120);
+      delay(300);
+      servob.write(90);
+      delay(300);
+      servob.write(120);
+      delay(1000);
+      servob.write(180);
+      delay(500);
+      servoh.write(110);
+      delay(1000);
+      servoh.write(65);
+      delay(200);
+      servoh.write(110);
+      delay(200);
+      servoh.write(65);
+      delay(200);
+      servoh.write(110);
+      delay(1000);
+      servoh.write(125);
+      delay(500);
+      servoh.write(65);
+      delay(500);
+      servob.write(90);
   }
 }
 

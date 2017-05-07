@@ -18,12 +18,15 @@ void SetFace() {
         } else if ((KPH < 100) && (KPH > 20)) {
           SPfastface();
         } else {
-          normalface();
         }
       } else {
         if (digitalRead(Mainbot) == HIGH) {
           switch (MainStatecounter) {
-            case 0 ... 3 :
+            case 0 :
+              normalface();
+              motorAction(0);
+              break;
+            case 1 ... 3 :
               ADface();
               motorAction(0);
               break;
@@ -58,7 +61,12 @@ void SetFace() {
           }
         } else {
           switch (MainStatecounter) {
-            case 0 ... 3 :
+            case 0 :
+              normalface();
+              motorAction(1);
+              MainStatecounter++;
+              break;
+            case 1 ... 3 :
               ADface();
               motorAction(1);
               MainStatecounter++;
@@ -88,9 +96,14 @@ void SetFace() {
               motorAction(4);
               MainStatecounter++;
               break;
-            case 18 ... 19 :
+            case 18:
               Nononoface();
-              motorAction(4);
+              motorAction(5);
+              MainStatecounter++;
+              break;
+            case 19:
+              Nononoface();
+              motorAction(6);
               MainStatecounter++;
               break;
             default :

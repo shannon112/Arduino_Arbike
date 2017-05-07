@@ -49,6 +49,53 @@ void motorAction(byte mode) {
       delay(300);
       servob.write(90);
       break;
+    case 5:
+      servob.write(180);
+      delay(500);
+      servoh.write(110);
+      delay(200);
+      servoh.write(65);
+      delay(200);
+      servoh.write(110);
+      delay(200);
+      servoh.write(65);
+      delay(200);
+      servoh.write(110);
+      delay(1000);
+      servoh.write(125);
+      delay(500);
+      servoh.write(65);
+      delay(500);
+      servob.write(90);
+      break;
+    case 6:
+      servob.write(120);
+      delay(300);
+      servob.write(90);
+      delay(300);
+      servob.write(120);
+      delay(300);
+      servob.write(90);
+      delay(300);
+      servob.write(120);
+      delay(1000);
+      servob.write(180);
+      delay(500);
+      servoh.write(110);
+      delay(1000);
+      servoh.write(65);
+      delay(200);
+      servoh.write(110);
+      delay(200);
+      servoh.write(65);
+      delay(200);
+      servoh.write(110);
+      delay(1000);
+      servoh.write(125);
+      delay(500);
+      servoh.write(65);
+      delay(500);
+      servob.write(90);
   }
 }
 void getrandomNumber() {

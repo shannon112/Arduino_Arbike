@@ -18,6 +18,7 @@ void SetPower() {                  //OK
         } else {
           digitalWrite(FRONTPower, HIGH);
           SetFace();
+          BlinkEyes();
           lcd.backlight();  //開啟背光
         }
       } else {

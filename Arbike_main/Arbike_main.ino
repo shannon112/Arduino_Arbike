@@ -65,9 +65,9 @@ long blinkornot = 0;
 ////////////////////////////Variable//////////////////////
 ///////////////////////////////////////////
 //********left/rightbot***********************
-volatile boolean leftPowerState = false;//一開始就會變化一次
-volatile boolean rightPowerState = false;//一開始就會變化一次
-int TurningState = 00;
+volatile boolean leftPowerState = true;//一開始就會變化一次
+volatile boolean rightPowerState = true;//一開始就會變化一次
+int TurningState = 0;
 //********AutoBot***********************************
 byte AutoState = 0; //是否開啟自動
 int AutoStatecounter = 0; //數開關被開了幾次
@@ -75,12 +75,16 @@ int AutoStatecounter = 0; //數開關被開了幾次
 int MainState = 0; //是否開啟開關
 int MainStatecounter = 0; //數開關被開了幾次
 long randomNumber = 0; //隨機模式按掉開關
+int newMainStatecounter = 0;
+int oldMainStatecounter = 0;
+int zeroMainStatecounter = 0;
 //********SensorState***********************************
 byte LightState = 0; //天亮or暗
 byte PeopleState = 0; //人在or不在
 byte FaceType = 1; //現在是哪種臉 0 1 2  slow normal fast
 //********SpeedDetect***********************************
 boolean ifSpeeding = 0;
+int ifSpeedingcounter=0;
 float oldKPH = 0;
 float newKPH = 0;
 float KPH = 0;
@@ -146,18 +150,18 @@ void setup() {
 ////////////////////////////Main function//////////////////////
 ///////////////////////////////////////////
 void loop() {
-  Serial.println("===================");
+//Serial.println("===================");
   CheckAuto();
   CheckLight();
   CheckPeople();
-  //  CheckPlay();
+  //CheckPlay();
   CheckTurningState();
   CheckSpeed();
   CheckTemperature();
   toPrint();
   SetPower(); //打開儀表板 後燈 前燈(表情)
-  //  BlinkEyes();
-  Serial.println("===================");
+  refreshFace();
+//Serial.println("===================");
 }
 
 

@@ -32,8 +32,11 @@ void printSpeed() {
   }
   oldKPH = newKPH;
   newKPH = KPH;
-  if (oldKPH == newKPH)
-    ifSpeeding = 0;
+  if (oldKPH == newKPH) {
+    ifSpeedingcounter++;
+    if ((ifSpeedingcounter % 200)==0)
+      ifSpeeding = 0;
+  }
   else
     ifSpeeding = 1;
 }

@@ -26,13 +26,9 @@ void motorAction(byte mode) {
       servob.write(90);
       break;
     case 3:
-      servob.write(180);
-      delay(50);
       servoh.write(125);
       delay(300);
       servoh.write(65);
-      delay(50);
-      servob.write(90);
       break;
     case 4:
       servob.write(120);
@@ -46,7 +42,12 @@ void motorAction(byte mode) {
       servob.write(120);
       delay(1000);
       servob.write(180);
-      delay(50);
+      delay(300);
+      servoh.write(125);
+      delay(300);
+      servoh.write(65);
+      delay(300);
+      servob.write(90);
       break;
   }
 }

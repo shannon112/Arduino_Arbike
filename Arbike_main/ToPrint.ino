@@ -1,10 +1,10 @@
 void toPrint() {
-  if ((printCounter > 40) && (printCounter < 61)) {
-    if (printCounter == 41) {
+  if ((printCounter > 60) && (printCounter < 91)) {
+    if (printCounter == 61) {
       lcd.clear();
     }
     printWeather();
-    if (printCounter == 60) {
+    if (printCounter == 90) {
       printCounter = 0;
       lcd.clear();
     }

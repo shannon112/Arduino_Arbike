@@ -11,17 +11,17 @@ void SetFace() {
       break;
     case 0 :
       if (ifSpeeding == 1) {
-        if (KPH < 10) {
+        if ((KPH < 10) && (KPH > 0)) {
           SPslowface();
         } else if ((KPH >= 10) && (KPH <= 20)) {
           SPnormalface();
-        } else {
+        } else if ((KPH < 100) && (KPH > 20)) {
           SPfastface();
+        } else {
+          normalface();
         }
       } else {
         if (digitalRead(Mainbot) == HIGH) {
-          if((MainStatecounter>0)&&(MainStatecounter<4))
-          normalface();
           motorAction(0);
         } else {
           switch (MainStatecounter) {
@@ -35,27 +35,27 @@ void SetFace() {
               motorAction(2);
               MainStatecounter++;
               break;
-            case 7 ... 8 :
+            case 6 ... 7 :
               fastface();
               motorAction(2);
               MainStatecounter++;
               break;
-            case 9 ... 10 :
+            case 8 ... 9 :
               angryface();
               motorAction(3);
               MainStatecounter++;
               break;
-            case 11 ... 12 :
+            case 10 ... 11 :
               veryangryface();
               motorAction(3);
               MainStatecounter++;
               break;
-            case 13 :
+            case 13 ... 14 :
               QQface();
               motorAction(4);
               MainStatecounter++;
               break;
-            case 14 :
+            case 15 ... 16 :
               Nononoface();
               motorAction(4);
               MainStatecounter++;
@@ -67,7 +67,7 @@ void SetFace() {
               MainStatecounter++;
               break;
           }
-        } 
+        }
       } break;
   }
 }

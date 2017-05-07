@@ -150,13 +150,13 @@ void loop() {
   CheckAuto();
   CheckLight();
   CheckPeople();
-//  CheckPlay();
+  //  CheckPlay();
   CheckTurningState();
   CheckSpeed();
   CheckTemperature();
   toPrint();
   SetPower(); //打開儀表板 後燈 前燈(表情)
-//  BlinkEyes();
+  //  BlinkEyes();
   Serial.println("===================");
 }
 
@@ -183,10 +183,12 @@ void readbitmap(const uint16_t input[]) {        //讀取bitmap的圖形
 
 void ChangeleftbotState() {
   leftPowerState = ! leftPowerState;
+  normalface();
 }
 
 void ChangerightbotState() {
   rightPowerState = ! rightPowerState;
+  normalface();
 }
 
 long ping() {

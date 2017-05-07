@@ -37,17 +37,17 @@ void loop() {
   if (m == HIGH) {
     Serial.println("off");
     servoh.write(65); //約155打到  90為躺平
-    servob.write(65); //90為躺平 180台盒子
+    servob.write(90); //90為躺平 180台盒子
 
   } else {
     Serial.println("on");
-    servob.write(180); //90為躺平 180台盒子
+    servob.write(180); 
+    delay(1500);
+    servoh.write(125); 
     delay(500);
-    servoh.write(125); //約155打到  90為躺平
-    delay(500);
-    servoh.write(65); //約155打到  90為躺平
-    delay(500);
-    servob.write(65); //90為躺平 180台盒子
+    servoh.write(65); 
+    delay(1000);
+    servob.write(90); 
   }
 }
 

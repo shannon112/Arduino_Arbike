@@ -95,13 +95,6 @@ void sfastface() { //fast face blink
   matrix.writeScreen();
 }
 
-void randomface(int a) {
-  switch (a) {
-    case 11:
-    case 12:
-  ;}
-}
-
 void brokenface() {
   FaceType = 11;
 }
@@ -133,4 +126,7 @@ void ADface() {
 }
 void g8face() {
   FaceType = 78;
+}
+void boringface() {
+  FaceType = 88;
 }

@@ -184,11 +184,13 @@ void readbitmap(const uint16_t input[]) {        //讀取bitmap的圖形
 void ChangeleftbotState() {
   leftPowerState = ! leftPowerState;
   normalface();
+  delay(100);
 }
 
 void ChangerightbotState() {
   rightPowerState = ! rightPowerState;
   normalface();
+  delay(100);
 }
 
 long ping() {

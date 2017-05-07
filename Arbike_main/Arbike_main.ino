@@ -1,5 +1,6 @@
 //Arbike v4.0
 
+#include <Servo.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include "Timer.h"            //https://github.com/JChristensen/Timer
@@ -28,8 +29,8 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define leftbot 2 //接Pin2，接無段式開關，然後接地
 #define rightbot 3 //接Pin3，接無段式開關，然後接地
 #define FRONTPower 6 //接給前燈 Vcc
-#define TRIGPIN 5
-#define ECHOPIN 7
+#define TRIGPIN 5  //超音波測距器
+#define ECHOPIN 7  //超音波測距器
 #define Autobot 10 //接Pin10，接有段式開關，然後接地 //OFF=全關，ONcounter＝0自動/1只亮儀表板/2全亮
 #define Mainbot 13 //開關LED表情電源 接Pin13，接有段式開關，然後接地  //加入counter，開關切換車宣and互動表情
 #define servoPinb 12 //接servo 開蓋子
@@ -38,8 +39,8 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define reedPin 15 //磁簧開關 一端插5V 一端插一欄  一欄分叉到D15&10K電阻接地
 #define HT_DATA 16 //LED Matrix系列 /I2C腳位SDA
 #define HT_WR   17 //LED Matrix系列 /I2C腳位SLA
-#define HT_CS   4 //LED Matrix系列 //RD
-#define HT_CS2  11 //LED Matrix系列 //CS
+#define HT_CS   4 //LED Matrix系列 //CS
+#define HT_CS2  11 //LED Matrix系列 //RD
 //analog
 #define Lightread 0 //高數值為亮 5V接光敏，光敏接A0/接10K電阻再接地 
 
@@ -123,6 +124,12 @@ void setup() {
 
   ////////// 磁簧開關
   pinMode(reedPin, INPUT);
+
+  ////////// 伺服馬達
+  Servo servob;
+  Servo servoh;
+  servob.attach(servoPinb);
+  servoh.attach(servoPinh);
 }
 
 

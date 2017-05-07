@@ -3,16 +3,19 @@
 ///////////////////////////////////////////
 void CheckAuto() { //OFF=全關，ONcounter＝0自動/1只亮儀表板/2全亮
   if (digitalRead(Autobot) == LOW) {
-    AutoState = -1;
+    AutoState = 0;
   } else {
-    AutoStatecounter ++;
-    AutoState = AutoStatecounter % 3;
+    AutoState = 1;
+    //AutoStatecounter ++;
+    //newAutoState = AutoStatecounter % 3;
   }
 }
 
 void CheckLight() {
   int Lightval = analogRead(Lightread);
-  if (Lightval < 512) {
+  Serial.print("light:");
+  Serial.println(Lightval);
+  if (Lightval < 200) {
     LightState = 0;
   } else {
     LightState = 1;
@@ -41,15 +44,15 @@ void CheckSpeed() {
     reedOn = false;
   }
 }
-
+/*
 void CheckPlay() {
   if (digitalRead(Mainbot) == LOW) {
     MainState = 1;
-    MainStatecounter++;
   } else
     MainState = 0;
+  Serial.println(MainState);
 }
-
+*/
 void CheckTurningState() {
   String tempTurningState = "";
   tempTurningState = String(leftPowerState) + String(rightPowerState);

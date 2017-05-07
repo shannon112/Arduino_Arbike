@@ -6,6 +6,7 @@ void motorAction(byte mode) {
     case 0://no
       servoh.write(65); //125推  65縮
       servob.write(90); //90為關蓋 180開蓋
+      break;
     case 1://slow mode
       servob.write(180);
       delay(1500);
@@ -14,6 +15,7 @@ void motorAction(byte mode) {
       servoh.write(65);
       delay(1000);
       servob.write(90);
+      break;
     case 2://normal mode
       servob.write(180);
       delay(500);

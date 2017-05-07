@@ -1,7 +1,14 @@
 void toPrint() {
-  if (printCounter == 20) {
+  if ((printCounter > 40) && (printCounter < 61)) {
+    if (printCounter == 41) {
+      lcd.clear();
+    }
     printWeather();
-    printCounter = 0;
+    if (printCounter == 60) {
+      printCounter = 0;
+      lcd.clear();
+    }
+    printCounter++;
   } else {
     printSpeed();
     printDistance();
@@ -15,10 +22,10 @@ void printSpeed() {
     //Speed: 13.25km/s
     KPH = speedometer * 36;
     lcd.setCursor(0, 0);
-    lcd.print("Speed: ");
-    lcd.setCursor(8, 0);
+    lcd.print("Speed:");
+    lcd.setCursor(6, 0);
     lcd.print(KPH, 2);
-    lcd.setCursor(13, 0);
+    lcd.setCursor(11, 0);
     lcd.print("km/s");
     //Serial.println("KPH:");
     //Serial.println(KPH);
@@ -37,10 +44,10 @@ void printDistance() {
     //Distance: 2213.23km
     kilometers = odometer / 100000;
     lcd.setCursor(0, 1);
-    lcd.print("Distance: ");
-    lcd.setCursor(11, 1);
+    lcd.print("Distance:");
+    lcd.setCursor(9, 1);
     lcd.print(kilometers, 2);
-    lcd.setCursor(15, 1);
+    lcd.setCursor(14, 1);
     lcd.print("km");
     //Serial.println("KM:");
     //Serial.println(kilometers);
@@ -60,19 +67,19 @@ void printWeather() {
   lcd.print("Humidity: ");
   lcd.setCursor(10, 0);
   lcd.print(h);
-  lcd.setCursor(16, 0);
+  lcd.setCursor(15, 0);
   lcd.print("%");
-
-  lcd.print("Temp: ");
-  lcd.setCursor(6, 1);
+  lcd.setCursor(0, 1);
+  lcd.print("Temp:");
+  lcd.setCursor(5, 1);
   lcd.print(t);
   lcd.setCursor(12, 1);
-  lcd.print(" *C ");
-//  Serial.print(f);
-//  Serial.print(" *F\t");
-//  Serial.print("Heat index: ");
-//  Serial.print(hic);
-//  Serial.print(" *C ");
-//  Serial.print(hif);
-//  Serial.println(" *F");
+  lcd.print("*C");
+  //  Serial.print(f);
+  //  Serial.print(" *F\t");
+  //  Serial.print("Heat index: ");
+  //  Serial.print(hic);
+  //  Serial.print(" *C ");
+  //  Serial.print(hif);
+  //  Serial.println(" *F");
 }

@@ -38,8 +38,8 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define TRIGPIN 5  //超音波測距器
 #define ECHOPIN 7  //超音波測距器
 //close
-#define Mainbot 13 //開關LED表情電源 接Pin13，接有段式開關，然後接地  //加入counter，開關切換車宣and互動表情
-#define servoPinb 12 //接servo 開蓋子
+#define Mainbot 12 //開關LED表情電源 接Pin13，接有段式開關，然後接地  //加入counter，開關切換車宣and互動表情
+#define servoPinb 13 //接servo 開蓋子
 #define servoPinh 9 //接servo 關開關
 #define DHTPIN 8 //接DHT11 data pinn
 #define HT_DATA 16 //LED Matrix系列 /I2C腳位SDA A2
@@ -49,7 +49,7 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 //analog
 #define Lightread 0 //高數值為亮 5V接光敏，光敏接A0/接10K電阻再接地 
 
-#define DHTTYPE DHT21   // DHT 21 (AM2301)
+#define DHTTYPE DHT11   // DHT 11
 DHT dht(DHTPIN, DHTTYPE);
 
 //gnd echo trig vcc白
@@ -65,8 +65,8 @@ long blinkornot = 0;
 ////////////////////////////Variable//////////////////////
 ///////////////////////////////////////////
 //********left/rightbot***********************
-volatile boolean leftPowerState = true;//一開始就會變化一次
-volatile boolean rightPowerState = true;//一開始就會變化一次
+volatile boolean leftPowerState = false;//一開始就會變化一次
+volatile boolean rightPowerState = false;//一開始就會變化一次
 int TurningState = 00;
 //********AutoBot***********************************
 byte AutoState = 0; //是否開啟自動
@@ -135,6 +135,7 @@ void setup() {
   //**************伺服馬達**************
   servob.attach(servoPinb);
   servoh.attach(servoPinh);
+  motorAction(0);
   //**************DHT11**************
   dht.begin();
   randomSeed(analogRead(7));
@@ -149,13 +150,13 @@ void loop() {
   CheckAuto();
   CheckLight();
   CheckPeople();
-  CheckPlay();
+//  CheckPlay();
   CheckTurningState();
   CheckSpeed();
   CheckTemperature();
   toPrint();
   SetPower(); //打開儀表板 後燈 前燈(表情)
-  BlinkEyes();
+//  BlinkEyes();
   Serial.println("===================");
 }
 

@@ -1,7 +1,8 @@
 # Arduino_Arbike
-### Arbike v4.0  
+### Arbike v5.0  
 I did lots of changing to this project, it is completely different to the old v2.2.  
 So I skip v3.0, directly name it as v4.0 to show it distinct.  
+Also, v5 is the most stable version.
 However, it is NOT completely done.  
 Still have faccgraph, motormode, random, DHT11 parts waiting to update.  
 The next version will come soon.  

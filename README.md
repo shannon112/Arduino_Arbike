@@ -1,25 +1,58 @@
 # Arduino_Arbike
-### Arbike v5.0  
-I did lots of changing to this project, it is completely different to the old v2.2.  
-So I skip v3.0, directly name it as v4.0 to show it distinct.  
-Also, v5 is the most stable version.
-However, it is NOT completely done.  
-Still have faccgraph, motormode, random, DHT11 parts waiting to update.  
-The next version will come soon.  
-    
-* This code is based on Arduino, is about an intelligent bicycle's lighting system.  
-* Based on Arduino Uno.  
+### Arbike v5.1  
+* This code is based on Arduino, is about an interactive bike's lighting system.  
+* Based on Arduino Nano.  
   
 ### Main Feature :   
-* Speed meter — Current speed / Trip distance  
+* Speedometer — Current speed / Trip distance  
+* Thermometer — Current temperature  
+* hygrometer — Current humidity  
 * Front — Strong LED headlights  
-* Back — Emotional "Useless Box" combine with tail lights (base on LED 16x24 matix)  
-* Automation on/off — detcect brightness / people  
-* Switching modes — switch system to auto or manual1 or manual2  
-* Source code is on github ! — the features are continuously update and open to change by anyone.  
+* Back — Emotional "Useless Box" combine with tail lights (base on LED matrix)  
+* Automation on/off — Detect brightness / people  
+* Switching modes — switch system to auto or off  
   
-### Olde version v2.2 simple demo ppt :  
-http://www.slideshare.net/secret/cXJbitPTAJqqQu  
-
+### Inspire by : 
+* Pimpmybike：http://jdeboi.com/portfolio/pimpmybike/
+* Useless machine(Kairoshi)：https://www.youtube.com/watch?v=bOD2-mRphTI
+  
+### Hardware Required : 
+1. Arduino nano *1
+2. LED matrix(16*24) with HT1632C *1 https://goo.gl/fACroy
+3. LCD with I2C *1
+4. HC-SR04 *1
+5. SG90 servo motor *2
+6. Photoresist *1
+7. DHT11 *1
+8. Breadboard *1
+9. Reed switch
+10. Button *4
+11. Resistance 10k *2
+12. Cables / Wires / *n
+13. LED *3
+14. Power bank *1 (for power supply)
+15. USB Type A to USB Mini-B wire *1
+  
+### Library Required : 
+* "Timer.h" -> https://github.com/JChristensen/Timer
+* "LiquidCrystal_I2C.h" -> https://bitbucket.org/fmalpartida/new-liquidcrysta...
+* "DHT.h" -> https://github.com/adafruit/DHT-sensor-library
+* "Adafruit_GFX.h" -> https://github.com/shannon112/arduino_Arbike/tree/...
+* "Adafruit_HT1632.h" -> https://github.com/shannon112/arduino_Arbike/tree/...  
+move to ```/Users/shannon/Documents/Arduino/libraries```  
+  
+### Hardware Connections :
 <img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image.png" width="500">
-
+  
+### New version v5.1 simple demo ppt :  
+http://www.slideshare.net/secret/cXJbitPTAJqqQu  
+<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image.png" width="500">
+  
+### Demo vedio:
+https://www.youtube.com/watch?v=9k5kU11C2Tw
+<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image.png" width="500">
+  
+### More info and instructables : 
+Blogger：https://shannon112.blogspot.tw/  
+Github：https://github.com/shannon112/   
+Instructables：https://www.instructables.com/member/Shannon112/  

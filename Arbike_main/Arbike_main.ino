@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-//Arbike v5.0 new-master
-=======
 //Arbike v5.0
->>>>>>> devel
 #include "Servo.h"
 #include "Wire.h"
 #include "LiquidCrystal_I2C.h"

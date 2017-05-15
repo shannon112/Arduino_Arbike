@@ -42,15 +42,15 @@
 move to ```/Users/shannon/Documents/Arduino/libraries```  
   
 ### Hardware Connections :
-<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image.png" width="500">
+<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image04.png" width="500">
   
 ### New version v5.1 simple demo ppt :  
-http://www.slideshare.net/secret/cXJbitPTAJqqQu  
-<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image.png" width="500">
+https://www.slideshare.net/secret/2eN1pxI6yKo5ah  
+<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image02.png" width="500">
   
 ### Demo vedio:
 https://www.youtube.com/watch?v=9k5kU11C2Tw
-<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image.png" width="500">
+<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image03.png" width="500">
   
 ### More info and instructables : 
 Blogger：https://shannon112.blogspot.tw/  

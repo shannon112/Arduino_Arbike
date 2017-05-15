@@ -16,6 +16,7 @@ void toPrint() {
   }
 }
 
+
 void printSpeed() {
   speedometer = wheelC / reedTimeDelta;
   if (metric) {
@@ -26,7 +27,7 @@ void printSpeed() {
     lcd.setCursor(6, 0);
     lcd.print(KPH, 2);
     lcd.setCursor(11, 0);
-    lcd.print("km/s");
+    lcd.print("km/hr");
     //Serial.println("KPH:");
     //Serial.println(KPH);
   }
@@ -40,6 +41,7 @@ void printSpeed() {
   else
     ifSpeeding = 1;
 }
+
 
 void printDistance() {
   odometer = wheelC * circleNum;
@@ -56,6 +58,7 @@ void printDistance() {
     //Serial.println(kilometers);
   }
 }
+
 
 void printWeather() {
   // Check if any reads failed and exit early (to try again).

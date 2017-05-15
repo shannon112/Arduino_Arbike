@@ -1,14 +1,15 @@
 //Arbike v5.0
-#include <Servo.h>
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-#include "Timer.h"            //https://github.com/JChristensen/Timer
+#include "Servo.h"
+#include "Wire.h"
+#include "LiquidCrystal_I2C.h"
+#include "Timer.h"
 #include "Adafruit_GFX.h"
 #include "Adafruit_HT1632.h"
-#include <avr/pgmspace.h>
+#include "avr/pgmspace.h"
 #include "DHT.h"
 Servo servob;
 Servo servoh;
+
 
 ///////////////////////////////////////////////////////////////
 ////////// Set speeder/////////////////
@@ -52,13 +53,11 @@ LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE);
 #define DHTTYPE DHT11   // DHT 11
 DHT dht(DHTPIN, DHTTYPE);
 
-//gnd echo trig vcc白
 ///////////////////////////////////////////////////////////////
 ////////////////////////////picture＆LED matrix setting//////////////////////
 ///////////////////////////////////////////
 // use this line for single matrix
 Adafruit_HT1632LEDMatrix matrix = Adafruit_HT1632LEDMatrix(HT_DATA, HT_WR, HT_CS);
-long blinkornot = 0;
 
 
 ///////////////////////////////////////////////////////////////
@@ -102,6 +101,11 @@ float h = 0;
 float t = 0;
 // Read temperature as Fahrenheit (isFahrenheit = true)
 float f = 0;
+//********Time***********************************
+long blinkornot = 0;
+long blinkLoopNumber=80;
+int refreshFaceLoopNumber=300;
+
 
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Setup//////////////////////
@@ -166,24 +170,25 @@ void loop() {
 
 
 void readbitmap(const uint16_t input[]) {        //讀取bitmap的圖形
-  int iii;
-  for (int j = 0; j < 48; j++) { //j為矩陣中第幾個元素
-    int jj = j / 3;              //jj為該元素在LEDmatrix所屬的排數上到下0~15排
-    int jjj = j % 3;             //jjj為該元素的位置的小塊LED在哪個colume
-    iii = pgm_read_word_near(input + j);            //iii為現在讀到元素的值8bit binary 0~255
+  int readMemberVal;
+  for (int memberNumber = 0; memberNumber < 48; memberNumber++) { //memberNumber為矩陣中第幾個元素
+    int rowNumber = memberNumber / 3;    //rowNumber為該元素在LEDmatrix所屬的排數上到下0~15排
+    int columeNumber = memberNumber % 3;       //columeNumber為該元素的位置的小塊LED在哪個colume
+    readMemberVal = pgm_read_word_near(input + memberNumber); //readMemberVal為現在讀到元素的值8bit binary 0~255
     //    Serial.print("row:");
     //    Serial.println(jj);
     //    Serial.print("colume:");
     //    Serial.println(jjj);
     for (int i = 0; i < 8; i++) {
-      int ii = iii % 2;          //ii為把元素分解成8bit binary的最後一位
-      iii = iii / 2;
+      int toBinaryLastVal = readMemberVal % 2;    //toBinaryLastVal為把元素分解成8bit binary的最後一位
+      readMemberVal = readMemberVal / 2;
       //      Serial.println(ii);
-      if (ii == 1) matrix.drawPixel(15 - jj, (7 + (jjj * 8)) - i, 1);
-      else if (ii == 0) matrix.drawPixel(15 - jj, (7 + (jjj * 8)) - i, 0);
+      if (toBinaryLastVal == 1) matrix.drawPixel(15 - rowNumber, (7 + (columeNumber * 8)) - i, 1);
+      else if (toBinaryLastVal == 0) matrix.drawPixel(15 - rowNumber, (7 + (columeNumber * 8)) - i, 0);
     }
   }
 }
+
 
 void ChangeleftbotState() {
   leftPowerState = ! leftPowerState;
@@ -191,11 +196,13 @@ void ChangeleftbotState() {
   delay(100);
 }
 
+
 void ChangerightbotState() {
   rightPowerState = ! rightPowerState;
   normalface();
   delay(100);
 }
+
 
 long ping() {
   digitalWrite(TRIGPIN, LOW);

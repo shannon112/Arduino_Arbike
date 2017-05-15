@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////
 ////////////////////////////Initial//////////////////////
 ///////////////////////////////////////////
-
 void InitialBlink() {  //OK
   for (int i = 0; i < 3; i++) {
     lcd.backlight();  // 開啟背光
@@ -12,6 +11,7 @@ void InitialBlink() {  //OK
   lcd.backlight();
 }
 
+
 void InitialOpen() {  //OK
   lcd.setCursor(0, 0); // 設定游標位置在第一行行首
   lcd.print("Hello, ArBike!");
@@ -20,6 +20,7 @@ void InitialOpen() {  //OK
   lcd.print("NTUME Shannon.");
   delay(5000);
 }
+
 
 void InitialReady() {  //OK
   lcd.clear();

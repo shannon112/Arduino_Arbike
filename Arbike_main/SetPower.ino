@@ -41,7 +41,6 @@ void SetPower() {                  //OK
     */
     default:
       Serial.println("WTF");
-
   }
 }
 

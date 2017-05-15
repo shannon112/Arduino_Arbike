@@ -11,16 +11,18 @@ void CheckAuto() { //OFF=全關，ONcounter＝0自動/1只亮儀表板/2全亮
   }
 }
 
+
 void CheckLight() {
   int Lightval = analogRead(Lightread);
   Serial.print("light:");
   Serial.println(Lightval);
-  if (Lightval < 200) {
+  if (Lightval < 500) {
     LightState = 0;
   } else {
     LightState = 1;
   }
 }
+
 
 void CheckPeople() {
   long cm = ping();
@@ -31,6 +33,7 @@ void CheckPeople() {
     PeopleState = 0;
   }
 }
+
 
 void CheckSpeed() {
   int r = digitalRead(reedPin);
@@ -44,6 +47,8 @@ void CheckSpeed() {
     reedOn = false;
   }
 }
+
+
 /*
 void CheckPlay() {
   if (digitalRead(Mainbot) == LOW) {
@@ -53,6 +58,8 @@ void CheckPlay() {
   Serial.println(MainState);
 }
 */
+
+
 void CheckTurningState() {
   String tempTurningState = "";
   tempTurningState = String(leftPowerState) + String(rightPowerState);

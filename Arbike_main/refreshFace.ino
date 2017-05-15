@@ -7,7 +7,7 @@ void  refreshFace(){
   else {
     zeroMainStatecounter = 0;
   }
-  if (zeroMainStatecounter > 300) {
+  if (zeroMainStatecounter > refreshFaceLoopNumber) {
     MainStatecounter = 0;
   }
 }

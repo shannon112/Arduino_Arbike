@@ -98,7 +98,9 @@ void motorAction(byte mode) {
       servob.write(90);
   }
 }
+
+
 void getrandomNumber() {
-  randomNumber = random(1, 5);
-  // get a random number from 1 to 4
+  randomNumber = random(1, 7);
+  // get a random number from 1 to 6
 }

@@ -1,6 +1,8 @@
 # Arduino_Arbike
 ### This version will not be updated anymore !  
-* There is a new version v4.0, check new-master branch or tag v4.0  
+### Please change to new-master branch or the latest tag.
+### Please change to new-master branch or the latest tag.
+### Please change to new-master branch or the latest tag.  
 ### Arbike v2.1  
 * It completely has all basic feature, and also fixed the problem about blink eyes.  
   

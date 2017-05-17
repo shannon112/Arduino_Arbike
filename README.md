@@ -8,7 +8,8 @@
 * Thermometer — Current temperature  
 * hygrometer — Current humidity  
 * Front — Strong LED headlights  
-* Back — Emotional "Useless Box" combine with tail lights (base on LED matrix)  
+* Back — Emotional "Useless Box" is combined with tail lights, can display lots of faces.  
+* Turing indicators — Display left/right/brake sign by LED matrix.
 * Automation on/off — Detect brightness / people  
 * Switching modes — switch system to auto or off  
   

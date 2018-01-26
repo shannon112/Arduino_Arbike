@@ -1,7 +1,6 @@
 # Arduino_Arbike
 ### Arbike v5.1  
 * This code is based on Arduino, is about an interactive bike's lighting system.  
-* Based on Arduino Nano.  
   
 ### Main Feature :   
 * Speedometer — Current speed / Trip distance  
@@ -10,10 +9,10 @@
 * Front — Strong LED headlights  
 * Back — Emotional "Useless Box" is combined with tail lights, can display lots of faces.  
 * Turing indicators — Display left/right/brake sign by LED matrix.
-* Automation on/off — Detect brightness / people  
-* Switching modes — switch system to auto or off  
+* Automatic on/off light — Detect brightness & people  
+* Two modes — Switch system to auto or manual  
   
-### Inspire by : 
+### Inspire by (ref) :  
 * Pimpmybike：http://jdeboi.com/portfolio/pimpmybike/
 * Useless machine(Kairoshi)：https://www.youtube.com/watch?v=bOD2-mRphTI
   
@@ -45,7 +44,7 @@ move to ```/Users/shannon/Documents/Arduino/libraries```
 ### Hardware Connections :
 <img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image04.png" width="500">
   
-### New version v5.1 simple demo ppt :  
+### Demo & Intro ppt :  
 https://www.slideshare.net/secret/2eN1pxI6yKo5ah  
 <img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image02.png" width="500">
   
@@ -53,7 +52,6 @@ https://www.slideshare.net/secret/2eN1pxI6yKo5ah
 https://www.youtube.com/watch?v=9k5kU11C2Tw  
 <img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/image03.png" width="500">
   
-### More info and instructables : 
-Blogger：https://shannon112.blogspot.tw/  
-Github：https://github.com/shannon112/   
-Instructables：https://www.instructables.com/member/Shannon112/  
+### More info about this project:  
+Github：https://github.com/shannon112/arduino_Arbike/tree/new-master  
+Instructables：https://www.instructables.com/id/Arduino-Arbike-a-Interactive-Bike-Lighting-System/  

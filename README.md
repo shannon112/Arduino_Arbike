@@ -55,3 +55,6 @@ https://www.youtube.com/watch?v=9k5kU11C2Tw
 ### More info about this project:  
 Github：https://github.com/shannon112/arduino_Arbike/tree/new-master  
 Instructables：https://www.instructables.com/id/Arduino-Arbike-a-Interactive-Bike-Lighting-System/  
+
+### 2017 NTU CS+X Showtime – Second Place Award
+<img src="https://raw.githubusercontent.com/shannon112/arduino_Arbike/new-master/22068822_1566289313393628_1957277949_o.jpg" width="300">
